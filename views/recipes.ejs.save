@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Recipes</title>
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+  <header>
+    <h1>Recipes</h1>
+    <nav>
+      <button onclick="window.location.href='/sign_in'">Sign In</button>
+      <button onclick="window.location.href='/sign_up'">Sign Up</button>
+    </nav>
+  </header>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Ingredients</th>
+        <th>Instructions</th>
+        <th>Created By</th>
+        <th>Rating</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% recipes.forEach(recipe => { %>
+        <tr>
+          <td><%= recipe.title %></td>
+          <td><%= recipe.ingredients %></td>
+          <td><%= recipe.instructions %></td>
+          <td><%= recipe.user_id %></td>
+	  <td>
+            <!-- Rating Form -->
+            <form action="/recipe/rate/<%= recipe.recipe_id %>" method="POST">
+              <select name="rating" required>
+                <option value="" disabled selected>Rate</option>
+                <option value="1">1 Star</option>
+                <option value="2">2 Stars</option>
+                <option value="3">3 Stars</option>
+                <option value="4">4 Stars</option>
+                <option value="5">5 Stars</option>
+              </select>
+              <button type="submit">Submit</button>
+            </form>
+            <p>Average Rating: 
+              <% if (recipe.number_of_ratings > 0) { %>
+                <%= (recipe.total_ratings / recipe.number_of_ratings).toFixed(1) %> / 5
+              <% } else { %>
+                No Ratings
+              <% } %>
+            </p>
+          </td>
+        </tr>
+      <% }) %>
+    </tbody>
+  </table>
+  
+  <footer>
+    <% if (user) { %> <!-- Check if the user is logged in -->
+      <div style="text-align: center; margin-top: 20px;">
+        <button onclick="window.location.href='/recipe_submission'" class="btn">Create New Recipe</button>
+      </div>
+    <% } else { %>
+      <div style="text-align: center; margin-top: 20px;">
+        <p>You must <a href="/sign_in">sign in</a> to create a new recipe.</p>
+      </div>
+    <% } %>
+  </footer>
+</body>
+</html>

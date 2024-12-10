@@ -1,0 +1,22 @@
+<% include header.ejs %>
+
+<main>
+  <h1>Search Recipes</h1>
+  <form action="/search" method="GET">
+    <label for="query">Search:</label>
+    <input type="text" name="query" id="query">
+    <button type="submit">Search</button>
+  </form>
+
+  <% if (recipes.length > 0) { %>
+    <ul>
+      <% recipes.forEach(recipe => { %>
+        <li><%= recipe.title %></li>
+      <% }); %>
+    </ul>
+  <% } else { %>
+    <p>No results found.</p>
+  <% } %>
+</main>
+
+<% include footer.ejs %>

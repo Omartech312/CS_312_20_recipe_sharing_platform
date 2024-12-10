@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Submit Your Recipe</title>
+  <link rel="stylesheet" href="/css/styles.css"> <!-- Link to your CSS -->
+</head>
+<body>
+  <main>
+    <h1>Submit Your Recipe</h1>
+    <% if (user) { %>
+      <form action="/recipe/create" method="POST">
+        <label for="title">Recipe Title:</label>
+        <input type="text" name="title" id="title" required>
+
+        <label for="ingredients">Ingredients:</label>
+        <input type="text" name="ingredients" id="ingredients" required>
+
+        <label for="instructions">Instructions:</label>
+        <textarea name="instructions" id="instructions" required></textarea>
+
+        <button type="submit">Submit Recipe</button>
+      </form>
+    <% } else { %>
+      <p>You must be signed in to submit a recipe. <a href="/sign_in">Sign in here</a>.</p>
+    <% } %>
+  </main>
+</body>
+</html>

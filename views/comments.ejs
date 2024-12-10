@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Comments</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f9f9f9;
+    }
+    main {
+      max-width: 800px;
+      margin: 20px auto;
+      padding: 20px;
+      background: white;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+    }
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+    li {
+      border-bottom: 1px solid #ddd;
+      padding: 10px 0;
+    }
+    button {
+      background-color: #007bff;
+      color: white;
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Comments</h1>
+    <!-- Display Existing Comments -->
+    <% if (comments.length > 0) { %>
+      <ul>
+        <% comments.forEach(comment => { %>
+          <li>
+            <strong><%= comment.username %>:</strong>
+            <p><%= comment.comment %></p>
+            <small>Posted on: <%= new Date(comment.created_at).toLocaleString() %></small>
+          </li>
+        <% }); %>
+      </ul>
+    <% } else { %>
+      <p>No comments yet. Be the first to comment!</p>
+    <% } %>
+
+    <!-- Add a New Comment -->
+    <% if (user) { %>
+      <form action="/recipe/comments/<%= recipeId %>" method="POST">
+        <textarea 
+          name="comment" 
+          placeholder="Write your comment here..." 
+          required 
+          style="width: 100%; height: 100px; margin-bottom: 10px; padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
+        </textarea>
+        <button type="submit">Submit Comment</button>
+      </form>
+    <% } else { %>
+      <p>You must <a href="/sign_in">sign in</a> to add a comment.</p>
+    <% } %>
+  </main>
+</body>
+</html>

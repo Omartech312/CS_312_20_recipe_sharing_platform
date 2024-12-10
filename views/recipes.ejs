@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Recipes</title>
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+  <header>
+    <h1>Recipes</h1>
+    <nav>
+      <% if (!user) { %>
+      	<button onclick="window.location.href='/sign_in'">Sign In</button>
+      	<button onclick="window.location.href='/sign_up'">Sign Up</button>
+      <% } %>
+    </nav>
+  </header>
+
+  <!-- Search Bar with Dropdown -->
+<div style="text-align: center; margin: 20px;">
+  <form action="/" method="GET">
+    <input 
+      type="text" 
+      name="search" 
+      placeholder="Search recipes..." 
+      value="<%= typeof searchQuery !== 'undefined' ? searchQuery : '' %>"
+      style="width: 40%; padding: 10px; border: 1px solid #ccc; border-radius: 5px;"
+    >
+    <select name="filter" style="padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
+      <option value="title" <%= filter === 'title' ? 'selected' : '' %>>Name</option>
+      <option value="ingredients" <%= filter === 'ingredients' ? 'selected' : '' %>>Ingredients</option>
+      <option value="instructions" <%= filter === 'instructions' ? 'selected' : '' %>>Instructions</option>
+      <option value="user_id" <%= filter === 'user_id' ? 'selected' : '' %>>Created By</option>
+      <option value="average_rating" <%= filter === 'average_rating' ? 'selected' : '' %>>Rating</option>
+    </select>
+    <button type="submit" style="padding: 10px 20px; background-color: #007bff; color: white; border: none; border-radius: 5px;">
+      Search
+    </button>
+  </form>
+</div>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Ingredients</th>
+        <th>Instructions</th>
+        <th>Created By</th>
+        <th>Rating</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% recipes.forEach(recipe => { %>
+        <tr>
+          <td><%= recipe.title %></td>
+          <td><%= recipe.ingredients %></td>
+          <td><%= recipe.instructions %></td>
+          <td><%= recipe.user_id %></td>
+          <td>
+
+            <!-- Rating Form -->
+	    <% if (user) { %>
+            	<form action="/recipe/rate/<%= recipe.recipe_id %>" method="POST">
+              	<select name="rating" required>
+                	<option value="" disabled selected>Rate</option>
+                	<option value="1">1 Star</option>
+                	<option value="2">2 Stars</option>
+                	<option value="3">3 Stars</option>
+                	<option value="4">4 Stars</option>
+                	<option value="5">5 Stars</option>
+              	</select>
+              	<button type="submit">Submit</button>
+            	</form>
+	    <% } %>
+            <p>Average Rating: 
+              <% if (recipe.number_of_ratings > 0) { %>
+                <%= (recipe.total_ratings / recipe.number_of_ratings).toFixed(1) %> / 5
+              <% } else { %>
+                No Ratings Available
+              <% } %>
+            </p>
+           <a href="/recipe/comments/<%= recipe.recipe_id %>">View Comments</a>
+          </td>
+        </tr>
+      <% }) %>
+    </tbody>
+  </table>
+  
+  <footer>
+    <% if (user) { %> <!-- Check if the user is logged in -->
+      <div style="text-align: center; margin-top: 20px;">
+        <button onclick="window.location.href='/recipe_submission'" class="btn">Create New Recipe</button>
+      </div>
+    <% } else { %>
+      <div style="text-align: center; margin-top: 20px;">
+        <p>You must <a href="/sign_in">sign in</a> to create a new recipe.</p>
+      </div>
+    <% } %>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,170 @@
+/* General body styling */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #FFFFFF; /* Light grayish background color */
+  margin: 0;
+  padding: 0;
+  display: flex; /* Flexbox layout for centering */
+  flex-direction: column;
+  align-items: center; /* Horizontal centering */
+  justify-content: center; /* Vertical centering */
+  min-height: 100vh; /* Full height to center the content */
+}
+
+/* Header styling */
+header {
+  background-color: #5dade2; /* Grey background color */
+  color: white; /* White text color */
+  text-align: center;
+  padding: 20px 0;
+  width: 100%; /* Full width for header */
+}
+
+/* Main content */
+main {
+  margin: 20px auto;
+  padding: 20px;
+  max-width: 900px;
+  background: white; /* White background for the content area */
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Subtle gray shadow */
+  border-radius: 8px; /* Rounded corners */
+}
+
+/* Footer styling */
+footer {
+  background-color: #333; /* Dark gray background color */
+  color: white; /* White text color */
+  text-align: center;
+  padding: 10px 0;
+  position: relative;
+  bottom: 0;
+  width: 100%;
+}
+
+/* Table styling */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+}
+
+table th,
+table td {
+  border: 1px solid #ddd; /* Light gray border for table cells */
+  padding: 10px;
+  text-align: center;
+}
+
+table th {
+  background-color: #5dade2; /* Blue background for table headers */
+  color: white; /* White text for headers */
+}
+
+table tr:nth-child(even) {
+  background-color: #f2f2f2; /* Very light gray for alternate rows */
+}
+
+table tr:hover {
+  background-color: #ddd; /* Light gray for hover effect on rows */
+}
+
+/* Buttons */
+button {
+  padding: 10px 20px;
+  background-color: #007BFF; /* Blue button background */
+  color: white; /* White text for buttons */
+  border: none;
+  border-radius: 5px; /* Rounded button corners */
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0056b3; /* Darker blue on hover */
+}
+
+/* Forms */
+form label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+form input,
+form textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #ddd; /* Light gray border for input fields */
+  border-radius: 5px; /* Rounded input fields */
+}
+
+/* Links */
+a {
+  color: #007BFF; /* Blue link color */
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline; /* Underline on hover */
+}
+
+/* Sign-In and Sign-Up Page Styles */
+.sign-form-container {
+  width: 100%;
+  max-width: 400px;
+  margin: auto; /* Center horizontally */
+  padding: 20px;
+  background-color: white;
+  border: 1px solid #ddd; /* Light gray border */
+  border-radius: 10px; /* Rounded corners */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Light shadow for depth */
+  text-align: center; /* Center text inside the form container */
+}
+
+.sign-form-container h1 {
+  text-align: center;
+  color: #5dade2; /* Blue color for header */
+  margin-bottom: 20px;
+}
+
+.sign-form-container label {
+  display: block;
+  font-weight: bold;
+  margin: 10px 0 5px;
+}
+
+.sign-form-container input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ddd; /* Light gray border */
+  border-radius: 5px;
+}
+
+.sign-form-container button {
+  width: 100%; /* Full width button */
+  padding: 10px;
+  background-color: #5dade2; /* Blue button background */
+  color: white; /* White text */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.sign-form-container button:hover {
+  background-color: #007BFF; /* Darker blue on hover */
+}
+
+/* Sign-In and Sign-Up Links */
+.sign-in-up-links {
+  text-align: center;
+  margin-top: 15px;
+}
+
+.sign-in-up-links a {
+  color: #5dade2; /* Link color */
+}
+
+.sign-in-up-links a:hover {
+  text-decoration: underline;
+}
